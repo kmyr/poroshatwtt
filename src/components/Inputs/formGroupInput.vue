@@ -32,10 +32,7 @@
         />
       </slot>
       <slot name="addonRight">
-        <span
-          v-if="addonRightIcon"
-          class="input-group-addon input-group-append"
-        >
+        <span v-if="addonRightIcon" class="input-group-addon input-group-append">
           <i class="input-group-text" :class="addonRightIcon"></i>
         </span>
       </slot>
@@ -47,9 +44,7 @@
           style="display: block;"
           :class="{ 'mt-2': hasIcon }"
           v-if="error"
-        >
-          {{ error }}
-        </div>
+        >{{ error }}</div>
       </slot>
     </div>
   </div>
@@ -57,7 +52,7 @@
 <script>
 export default {
   inheritAttrs: false,
-  name: 'fg-input',
+  name: "fg-input",
   props: {
     required: Boolean,
     label: String,
@@ -66,7 +61,7 @@ export default {
     inputClasses: String,
     value: {
       type: [String, Number],
-      default: ''
+      default: ""
     },
     addonRightIcon: String,
     addonLeftIcon: String
@@ -81,7 +76,6 @@ export default {
       return {
         ...this.$listeners,
         input: this.updateValue,
-        focus: this.onFocus,
         blur: this.onBlur
       };
     },
@@ -98,15 +92,11 @@ export default {
   methods: {
     updateValue(evt) {
       let value = evt.target.value;
-      this.$emit('input', value);
-    },
-    onFocus(value) {
-      this.focused = true;
-      this.$emit('focus', value);
+      this.$emit("input", value);
     },
     onBlur(value) {
       this.focused = false;
-      this.$emit('blur', value);
+      this.$emit("blur", value);
     }
   }
 };

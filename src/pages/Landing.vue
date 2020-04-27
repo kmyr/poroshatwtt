@@ -1,11 +1,7 @@
 <template>
   <div>
     <div class="page-header page-header-small">
-      <parallax
-        class="page-header-image"
-        style="background-image: url('img/bg6.jpg')"
-      >
-      </parallax>
+      <parallax class="page-header-image" style="background-image: url('img/bg6.jpg')"></parallax>
       <div class="content-center">
         <div class="container">
           <h1 class="title">This is our great company.</h1>
@@ -55,17 +51,11 @@
                 </p>
               </div>
               <!-- Second image on the left side of the article -->
-              <div
-                class="image-container"
-                style="background-image: url('img/bg3.jpg')"
-              ></div>
+              <div class="image-container" style="background-image: url('img/bg3.jpg')"></div>
             </div>
             <div class="col-md-5">
               <!-- First image on the right side, above the article -->
-              <div
-                class="image-container image-right"
-                style="background-image: url('img/bg1.jpg')"
-              ></div>
+              <div class="image-container image-right" style="background-image: url('img/bg1.jpg')"></div>
               <h3>
                 So what does the new record for the lowest level of winter ice
                 actually mean
@@ -118,18 +108,19 @@
                 <p class="description">
                   You can write here details about one of your team members. You
                   can give more details about what they do. Feel free to add
-                  some <a href="#">links</a> for people to be able to follow
+                  some
+                  <a href="#">links</a> for people to be able to follow
                   them outside the site.
                 </p>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"
-                  ><i class="fab fa-twitter"></i
-                ></a>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"
-                  ><i class="fab fa-instagram"></i
-                ></a>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"
-                  ><i class="fab fa-facebook-square"></i
-                ></a>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+                  <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+                  <i class="fab fa-facebook-square"></i>
+                </a>
               </div>
             </div>
             <div class="col-md-4">
@@ -144,15 +135,16 @@
                 <p class="description">
                   You can write here details about one of your team members. You
                   can give more details about what they do. Feel free to add
-                  some <a href="#">links</a> for people to be able to follow
+                  some
+                  <a href="#">links</a> for people to be able to follow
                   them outside the site.
                 </p>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"
-                  ><i class="fab fa-twitter"></i
-                ></a>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"
-                  ><i class="fab fa-linkedin"></i
-                ></a>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+                  <i class="fab fa-linkedin"></i>
+                </a>
               </div>
             </div>
             <div class="col-md-4">
@@ -167,18 +159,19 @@
                 <p class="description">
                   You can write here details about one of your team members. You
                   can give more details about what they do. Feel free to add
-                  some <a href="#">links</a> for people to be able to follow
+                  some
+                  <a href="#">links</a> for people to be able to follow
                   them outside the site.
                 </p>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"
-                  ><i class="fab fa-google-plus"></i
-                ></a>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"
-                  ><i class="fab fa-youtube"></i
-                ></a>
-                <a href="#pablo" class="btn btn-primary btn-icon btn-round"
-                  ><i class="fab fa-twitter"></i
-                ></a>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+                  <i class="fab fa-google-plus"></i>
+                </a>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+                  <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#pablo" class="btn btn-primary btn-icon btn-round">
+                  <i class="fab fa-twitter"></i>
+                </a>
               </div>
             </div>
           </div>
@@ -196,15 +189,13 @@
               placeholder="First Name..."
               v-model="form.firstName"
               addon-left-icon="now-ui-icons users_circle-08"
-            >
-            </fg-input>
+            ></fg-input>
             <fg-input
               class="input-lg"
               placeholder="Email Here..."
               v-model="form.email"
               addon-left-icon="now-ui-icons ui-1_email-85"
-            >
-            </fg-input>
+            ></fg-input>
             <div class="textarea-container">
               <textarea
                 class="form-control"
@@ -216,9 +207,7 @@
               ></textarea>
             </div>
             <div class="send-button">
-              <n-button type="primary" round block size="lg"
-                >Send Message</n-button
-              >
+              <n-button type="primary" round block size="lg">Send Message</n-button>
             </div>
           </div>
         </div>
@@ -227,10 +216,10 @@
   </div>
 </template>
 <script>
-import { Button, FormGroupInput } from '@/components';
+import { Button, FormGroupInput } from "@/components";
 export default {
-  name: 'landing',
-  bodyClass: 'landing-page',
+  name: "landing",
+  bodyClass: "landing-page",
   components: {
     [Button.name]: Button,
     [FormGroupInput.name]: FormGroupInput
@@ -238,9 +227,9 @@ export default {
   data() {
     return {
       form: {
-        firstName: '',
-        email: '',
-        message: ''
+        firstName: "",
+        email: "",
+        message: ""
       }
     };
   }

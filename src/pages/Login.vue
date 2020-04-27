@@ -9,40 +9,46 @@
         <div class="col-md-5 ml-auto mr-auto">
           <card type="login" plain>
             <div slot="header" class="logo-container">
-              <img v-lazy="'img/now-logo.png'" alt="" />
+              <img v-lazy="'img/now-logo.png'" alt />
             </div>
-
+            <div
+              class="alert alert-danger"
+              id="incorrectInformation"
+              role="alert"
+              style="display: none;"
+            >
+              Informations Are Incorrect
+            </div>
+            <div
+              class="alert alert-danger"
+              id="emptyFields"
+              role="alert"
+              style="display: none;"
+            >
+              Fields Are Empty
+            </div>
             <fg-input
               class="no-border input-lg"
               addon-left-icon="now-ui-icons users_circle-08"
-              placeholder="First Name..."
-            >
-            </fg-input>
+              placeholder="Username"
+              v-model="username"
+            ></fg-input>
 
             <fg-input
               class="no-border input-lg"
               addon-left-icon="now-ui-icons text_caps-small"
-              placeholder="Last Name..."
-            >
-            </fg-input>
+              placeholder="Password"
+              type="password"
+              v-model="password"
+            ></fg-input>
 
             <template slot="raw-content">
               <div class="card-footer text-center">
                 <a
-                  href="#pablo"
+                  @click="login()"
                   class="btn btn-primary btn-round btn-lg btn-block"
-                  >Get Started</a
+                  >Log In</a
                 >
-              </div>
-              <div class="pull-left">
-                <h6>
-                  <a href="#pablo" class="link footer-link">Create Account</a>
-                </h6>
-              </div>
-              <div class="pull-right">
-                <h6>
-                  <a href="#pablo" class="link footer-link">Need Help?</a>
-                </h6>
               </div>
             </template>
           </card>
@@ -53,17 +59,62 @@
   </div>
 </template>
 <script>
-import { Card, Button, FormGroupInput } from '@/components';
-import MainFooter from '@/layout/MainFooter';
+import { setLogin } from "../main";
+import $ from "jquery";
+import { Card, Button, FormGroupInput } from "@/components";
+import MainFooter from "@/layout/MainFooter";
 export default {
-  name: 'login-page',
-  bodyClass: 'login-page',
+  name: "login-page",
+  bodyClass: "login-page",
+  data() {
+    return {
+      username: "",
+      password: "",
+      usersInfo: [],
+    };
+  },
   components: {
     Card,
     MainFooter,
     [Button.name]: Button,
-    [FormGroupInput.name]: FormGroupInput
-  }
+    [FormGroupInput.name]: FormGroupInput,
+  },
+  async created() {
+    try {
+      //Users Data
+      this.$http
+        .get("users.json")
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          this.usersInfo = data;
+        });
+    } catch (e) {
+      console.error(e);
+    }
+  },
+  methods: {
+    login() {
+      for (const user in this.usersInfo) {
+        console.log(user);
+        if (this.username !== "" && this.password !== "") {
+          if (
+            this.username === this.usersInfo[user].email &&
+            this.password === this.usersInfo[user].password
+          ) {
+            setLogin.$emit("setProfile", user);
+          } else {
+            $("#incorrectInformation").fadeIn(1000);
+          }
+        } else {
+          $("#emptyFields").fadeIn(1000);
+        }
+      }
+      $("#incorrectInformation").fadeOut(1000);
+      $("#emptyFields").fadeOut(1000);
+    },
+  },
 };
 </script>
 <style></style>
