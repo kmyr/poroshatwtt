@@ -72,9 +72,10 @@ export default {
     setLogin.$on("setProfile", (user) => {
       localStorage.login = true;
       localStorage.userName = this.usersInfo[user].name;
+      localStorage.userImg = this.usersInfo[user].picture;
       localStorage.userEmail = this.usersInfo[user].email;
       this.userLogin = localStorage.login;
-      this.$router.push("/");
+      this.$router.push("profile");
     });
     if (localStorage.login) {
       this.userLogin = localStorage.login;
@@ -85,6 +86,7 @@ export default {
       localStorage.removeItem("login");
       localStorage.removeItem("userName");
       localStorage.removeItem("userEmail");
+      localStorage.removeItem("userImg");
 
       this.userLogin = false;
     },
