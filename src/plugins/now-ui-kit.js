@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import '@/assets/scss/now-ui-kit.scss';
-import '@/assets/demo/demo.css';
+import '@/assets/style/scss/now-ui-kit.scss';
+import '@/assets/style/website/website.css';
+import '@/assets/style/website/main.css';
 import globalDirectives from './globalDirectives';
 import globalMixins from './globalMixins';
 import globalComponents from './globalComponents';

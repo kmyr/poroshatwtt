@@ -19,11 +19,11 @@
         </router-link>
       </li>
       <li class="nav-item">
-        <router-link to="/">
+        <a  @click="logout">
           <span v-if="userLogin">
-            <i class="fa fa-power-off" @click="logout"></i> Sign Out</span
+            <i class="fa fa-power-off"></i> Sign Out</span
           >
-        </router-link>
+        </a>
       </li>
       <li class="nav-item">
         <router-link to="/"> <i class="fa fa-home"></i> Home </router-link>
@@ -87,6 +87,7 @@ export default {
       localStorage.removeItem("userName");
       localStorage.removeItem("userEmail");
       localStorage.removeItem("userImg");
+      this.$router.push("/");
 
       this.userLogin = false;
     },
@@ -95,5 +96,4 @@ export default {
 </script>
 
 <style scoped>
-@import "../assets/style/main.css";
 </style>
