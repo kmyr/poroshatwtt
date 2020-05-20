@@ -11,3 +11,5 @@ a {
 a span:hover {
     text-decoration: underline;
 }
+.content-center.brand>* {
+    text-shadow: -7px 0px 4px rgba(150, 150, 150, 1);}

@@ -61,7 +61,7 @@
 <script>
 import { setLogin } from "../main";
 import $ from "jquery";
-import { Card, Button, FormGroupInput } from "@/components";
+import { Card, Button, FormGroupInput } from "@/bootstrapComponents";
 import MainFooter from "@/layout/MainFooter";
 export default {
   name: "login-page",

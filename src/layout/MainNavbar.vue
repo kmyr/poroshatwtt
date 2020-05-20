@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { DropDown, NavbarToggleButton, Navbar, NavLink } from "@/components";
+import { DropDown, NavbarToggleButton, Navbar, NavLink } from "@/bootstrapComponents";
 import { Popover } from "element-ui";
 import { setLogin } from "../main";
 export default {

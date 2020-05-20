@@ -54,7 +54,7 @@
   </div>
 </template>
 <script>
-import { Tabs, TabPane } from '@/components';
+import { Tabs, TabPane } from '@/bootstrapComponents';
 
 export default {
   name: 'profile',

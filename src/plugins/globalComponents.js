@@ -1,4 +1,4 @@
-import { Parallax } from '../components';
+import { Parallax } from '../bootstrapComponents';
 /**
  * You can register global components here
  */

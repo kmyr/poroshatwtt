@@ -32,7 +32,7 @@
   </div>
 </template>
 <script>
-import { Parallax } from "@/components";
+import { Parallax } from "@/bootstrapComponents";
 
 export default {
   name: "index",
