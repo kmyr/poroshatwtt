@@ -1,0 +1,28 @@
+.row {
+    margin: 10px !important;
+}
+#item {
+    cursor: pointer;
+}
+#item:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+.title p {
+font-size: small;
+color: gray;
+}
+.title h4 {
+    margin: 0;
+}
+.padding {
+    margin: 3px !important;
+}
+.padding button {
+    width: 100%;
+    font-weight: 900;
+    font-size: 20px;
+}
+#popupForm button {
+    padding-top: 0;
+}
