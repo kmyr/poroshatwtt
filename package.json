@@ -11,6 +11,7 @@
     "add": "^2.0.6",
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
+    "cors": "^2.8.5",
     "element-ui": "^2.5.4",
     "jalali-moment": "^3.3.7",
     "jquery": "^3.5.1",

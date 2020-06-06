@@ -10,6 +10,9 @@
 #item #actionSection span:hover svg{
     font-size: 20px;
 }
+#item #actionSection span {
+margin-left: 3px;
+}
 .title p {
 font-size: small;
 color: gray;
@@ -27,4 +30,7 @@ color: gray;
 }
 #popupForm button {
     padding-top: 0;
+}
+#deleteBtn svg {
+    color: red
 }

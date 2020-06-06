@@ -5,6 +5,7 @@ import $ from "jquery";
 import router from "./router";
 import vueRouter from 'vue-router'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import cors from "cors"
 
 
 // Install BootstrapVue
@@ -17,6 +18,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.config.productionTip = false;
 
 Vue.use(vueRouter)
+Vue.use(cors)
 
 var moment = require('jalali-moment');
 var nowDate = moment().locale('fa').format('YYYY/M/D')
