@@ -25,7 +25,6 @@ var nowDate = moment().locale('fa').format('YYYY/M/D')
 
 new Vue.use($);
 Vue.use(vueResource);
-Vue.http.options.root = "https://poroshatwtt.firebaseio.com";
 
 Vue.mixin({
     data() {

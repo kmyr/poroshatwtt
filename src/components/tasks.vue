@@ -9,15 +9,19 @@
         <template>
           <b-list-group>
             <b-list-group-item v-for="(task, i) in tasks" :key="i" id="item">
-              <span class="title">
-                <h4>{{task.name}}</h4>
-                <p>{{task.created}}</p>
-              </span>
+              <router-link
+                class="title"
+                :to="{name: 'view_task',params:{taskTitle: task.title}}"
+                tag="span"
+              >
+                <h4>{{task.title}}</h4>
+                <p>{{task.createdDate}}</p>
+              </router-link>
               {{task.description}}
               <br />
 
               <div id="actionSection">
-                <span id="deleteBtn" @click="deleteItem(i)">
+                <span id="deleteBtn">
                   <svg
                     class="bi bi-x-circle-fill"
                     width="1em"
@@ -64,15 +68,15 @@
           <b-modal ref="my-modal" hide-footer title="Using Component Methods">
             <div class="d-block text-center">
               <b-input-group prepend="Task Name" class="mb-2">
-                <b-form-input aria-label="Task name" v-model="prepareTask.name"></b-form-input>
+                <b-form-input aria-label="Task name" v-model="title"></b-form-input>
               </b-input-group>
               <b-input-group prepend="Description" class="mb-2">
-                <b-form-input aria-label="Description" v-model="prepareTask.description"></b-form-input>
+                <b-form-input aria-label="Description" v-model="description"></b-form-input>
               </b-input-group>
             </div>
             <div class="row" id="popupForm">
               <div class="col-md-6">
-                <b-button class="mt-3" variant="outline-danger" block @click="toggleModal">
+                <b-button class="mt-3" variant="outline-danger" block @click="toggleModal('close')">
                   <svg
                     class="bi bi-x-circle-fill"
                     width="1em"
@@ -89,7 +93,7 @@
                 </b-button>
               </div>
               <div class="col-md-6">
-                <b-button class="mt-3" variant="outline-success" block @click="addTask">
+                <b-button class="mt-3" variant="outline-success" block @click="addData">
                   <svg
                     class="bi bi-plus-circle-fill"
                     width="1em"
@@ -116,45 +120,27 @@
 import $ from "jquery";
 import getData from "../actions/get.vue";
 import postData from "../actions/post.vue";
-import deleteData from "../actions/delete.vue";
+// import deleteData from "../actions/delete.vue";
 export default {
-  mixins: [getData, postData, deleteData],
+  mixins: [getData, postData],
   data() {
     return {
-      tasks: [],
       date: "",
-      prepareTask: {
-        name: "",
-        description: ""
-      }
+      title: null,
+      description: null
     };
   },
   created() {
     this.date = this.currentDate;
-    this.getData("tasks.json");
+    this.getData("tasks");
   },
   methods: {
-    addTask() {
-      if ((this.prepareTask.name !== "", this.prepareTask.description !== "")) {
-        this.postData("tasks.json", {
-          name: this.prepareTask.name,
-          description: this.prepareTask.description,
-          created: this.date
-        });
-        $("input").val("");
-        $("input").removeClass("is-invalid");
-      } else {
-        $("input:text")
-          .filter(function() {
-            return this.value == "";
-          })
-          .addClass("is-invalid");
-        $("input:text")
-          .filter(function() {
-            return this.value !== "";
-          })
-          .removeClass("is-invalid");
-      }
+    addData() {
+      this.saveTask("tasks", {
+        title: this.title,
+        createdDate: this.date,
+        description: this.description
+      });
     },
     toggleModal() {
       // We pass the ID of the button that we want to return focus to
@@ -163,15 +149,6 @@ export default {
     },
     forwardItem(i) {
       this.postData("inProgress.json", this.tasks[i]);
-    },
-    deleteItem(i) {
-      // this.deleteData("tasks.json", "-M98x-pslB2mimC4lEim");
-      alert(i);
-      try {
-        this.$http.delete("tasks.json/-M98xV9iYG3ibx-VXAEm");
-      } catch (e) {
-        console.error(e);
-      }
     }
   }
 };

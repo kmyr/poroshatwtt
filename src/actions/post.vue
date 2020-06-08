@@ -1,12 +1,15 @@
 <script>
+import db from "../components/firebaseInit";
+
 export default {
   methods: {
-    async postData(doc, obj) {
-      try {
-        this.$http.post(doc, obj);
-      } catch (e) {
-        console.error(e);
-      }
+    saveTask(document, obj) {
+      db.collection(document)
+        .add(obj)
+        .then(docRef => {
+          this.$router.push("/");
+        })
+        .catch(error => console.log(err));
     }
   }
 };

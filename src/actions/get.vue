@@ -1,19 +1,27 @@
 <script>
+import db from "../components/firebaseInit";
 export default {
+  name: "dashboard",
+  data() {
+    return {
+      tasks: []
+    };
+  },
   methods: {
-    async getData(doc) {
-      try {
-        this.$http
-          .get(doc)
-          .then(response => {
-            return response.json();
-          })
-          .then(data => {
-            this.tasks = data;
+    getData(document) {
+      db.collection(document)
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            const data = {
+              id: doc.id,
+              title: doc.data().title,
+              createdDate: doc.data().createdDate,
+              description: doc.data().description
+            };
+            this.tasks.push(data);
           });
-      } catch (e) {
-        console.error(e);
-      }
+        });
     }
   }
 };
