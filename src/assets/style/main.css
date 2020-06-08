@@ -8,10 +8,14 @@
     background-color: rgb(172, 172, 172);
 }
 #item #actionSection span:hover svg{
-    font-size: 20px;
+    font-size: 22px;
 }
 #item #actionSection span {
 margin-left: 3px;
+margin-right: 10px;
+font-size: 20px;
+
+
 }
 .title p {
 font-size: small;
@@ -32,5 +36,8 @@ color: gray;
     padding-top: 0;
 }
 #deleteBtn svg {
-    color: red
+    color: red;
+}
+#editBtn {
+    color: blue;
 }

@@ -65,7 +65,7 @@
         aria-hidden="true"
       >
         <div>
-          <b-modal ref="my-modal" hide-footer title="Using Component Methods">
+          <b-modal ref="newItemModal" hide-footer title="Using Component Methods">
             <div class="d-block text-center">
               <b-input-group prepend="Task Name" class="mb-2">
                 <b-form-input aria-label="Task name" v-model="title"></b-form-input>
@@ -145,7 +145,7 @@ export default {
     toggleModal() {
       // We pass the ID of the button that we want to return focus to
       // when the modal has hidden
-      this.$refs["my-modal"].toggle("#toggle-btn");
+      this.$refs["newItemModal"].toggle("#toggle-btn");
     },
     forwardItem(i) {
       this.postData("inProgress.json", this.tasks[i]);
