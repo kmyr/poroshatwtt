@@ -1,12 +1,16 @@
 <script>
+import db from "../components/firebaseInit";
 export default {
   methods: {
-    async deleteData(doc, obj) {
-      try {
-        this.$http.delete(doc, obj);
-      } catch (e) {
-        console.error(e);
-      }
+    async deleteData(doc, i) {
+      db.collection(doc)
+        .where("title", "==", i)
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            doc.ref.delete();
+          });
+        });
     }
   }
 };

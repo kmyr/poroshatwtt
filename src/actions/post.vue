@@ -6,10 +6,10 @@ export default {
     saveTask(document, obj) {
       db.collection(document)
         .add(obj)
-        .then(docRef => {
-          this.$router.push("/");
-        })
-        .catch(error => console.log(err));
+        .catch(error => console.log(err))
+        .then(() => {
+          location.reload();
+        });
     }
   }
 };

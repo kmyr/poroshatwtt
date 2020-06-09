@@ -21,7 +21,7 @@
               <br />
 
               <div id="actionSection">
-                <span id="deleteBtn">
+                <span id="deleteBtn" @click="deleteItem(task.title)">
                   <svg
                     class="bi bi-x-circle-fill"
                     width="1em"
@@ -56,19 +56,12 @@
           </b-list-group>
         </template>
       </b-card>
-      <div
-        class="modal fade"
-        id="addTaskForm"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
+      <div class="modal fade" id="addTaskForm" tabindex="-1" role="dialog" aria-hidden="true">
         <div>
-          <b-modal ref="newItemModal" hide-footer title="Using Component Methods">
+          <b-modal ref="newItemModal" hide-footer title="Add New Task">
             <div class="d-block text-center">
-              <b-input-group prepend="Task Name" class="mb-2">
-                <b-form-input aria-label="Task name" v-model="title"></b-form-input>
+              <b-input-group prepend="Title" class="mb-2">
+                <b-form-input aria-label="Title" v-model="title"></b-form-input>
               </b-input-group>
               <b-input-group prepend="Description" class="mb-2">
                 <b-form-input aria-label="Description" v-model="description"></b-form-input>
@@ -117,12 +110,14 @@
   </div>
 </template>
 <script>
+import db from "./firebaseInit";
 import $ from "jquery";
 import getData from "../actions/get.vue";
 import postData from "../actions/post.vue";
+import deleteData from "../actions/delete.vue";
 // import deleteData from "../actions/delete.vue";
 export default {
-  mixins: [getData, postData],
+  mixins: [getData, postData, deleteData],
   data() {
     return {
       date: "",
@@ -136,12 +131,31 @@ export default {
   },
   methods: {
     addData() {
-      this.saveTask("tasks", {
-        title: this.title,
-        createdDate: this.date,
-        description: this.description
-      });
+      if (this.title !== null && this.description !== null) {
+        this.saveTask("tasks", {
+          title: this.title,
+          createdDate: this.date,
+          description: this.description
+        });
+        this.title = null;
+        this.description = null;
+        $("input").removeClass("is-invalid");
+        this.toggleModal();
+      } else {
+        $("input:text")
+          .filter(function() {
+            return this.value == "";
+          })
+          .addClass("is-invalid");
+
+        $("input:text")
+          .filter(function() {
+            return this.value !== "";
+          })
+          .removeClass("is-invalid");
+      }
     },
+
     toggleModal() {
       // We pass the ID of the button that we want to return focus to
       // when the modal has hidden
@@ -149,6 +163,11 @@ export default {
     },
     forwardItem(i) {
       this.postData("inProgress.json", this.tasks[i]);
+    },
+    deleteItem(i) {
+      if (confirm(`Delete ${i} ?`)) {
+        this.deleteData("tasks", i);
+      }
     }
   }
 };
