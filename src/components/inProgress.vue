@@ -5,15 +5,34 @@
         <template>
           <b-list-group>
             <b-list-group-item v-for="(task, i) in tasks" :key="i" id="item">
-              <span class="title">
-                <h4>{{task.name}}</h4>
-                <p>{{task.created}}</p>
-              </span>
+              <router-link
+                class="title"
+                :to="{name: 'view_task',params:{taskTitle: task.title}}"
+                tag="span"
+              >
+                <h4>{{task.title}}</h4>
+                <p>{{task.createdDate}}</p>
+              </router-link>
               {{task.description}}
               <br />
 
               <div id="actionSection">
-                <span>
+                <span id="deleteBtn" @click="deleteItem(task.title)">
+                  <svg
+                    class="bi bi-x-circle-fill"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.146-3.146a.5.5 0 0 0-.708-.708L8 7.293 4.854 4.146a.5.5 0 1 0-.708.708L7.293 8l-3.147 3.146a.5.5 0 0 0 .708.708L8 8.707l3.146 3.147a.5.5 0 0 0 .708-.708L8.707 8l3.147-3.146z"
+                    />
+                  </svg>
+                </span>
+                <span @click="forwardItem(i)">
                   <svg
                     class="bi bi-arrow-right-square-fill"
                     width="1em"
@@ -39,16 +58,24 @@
 <script>
 import $ from "jquery";
 import getData from "../actions/get.vue";
+import deleteData from "../actions/delete.vue";
+import postData from "../actions/post.vue";
 export default {
-  mixins: [getData],
+  mixins: [getData, deleteData, postData],
   data() {
-    return {
-      tasks: []
-    };
+    return {};
   },
-  created() {
-    this.getData("inProgress.json");
+  created(i) {
+    this.getData("inProgress", i);
   },
-  methods: {}
+  methods: {
+    deleteItem(i) {
+      this.saveTask("refresh", {});
+
+      if (confirm(`Delete ${i} ?`)) {
+        this.deleteData("inProgress", i);
+      }
+    }
+  }
 };
 </script>

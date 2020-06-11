@@ -69,7 +69,7 @@
             </div>
             <div class="row" id="popupForm">
               <div class="col-md-6">
-                <b-button class="mt-3" variant="outline-danger" block @click="toggleModal('close')">
+                <b-button class="mt-3" variant="outline-danger" block @click="toggleModal()">
                   <svg
                     class="bi bi-x-circle-fill"
                     width="1em"
@@ -115,7 +115,7 @@ import $ from "jquery";
 import getData from "../actions/get.vue";
 import postData from "../actions/post.vue";
 import deleteData from "../actions/delete.vue";
-// import deleteData from "../actions/delete.vue";
+
 export default {
   mixins: [getData, postData, deleteData],
   data() {
@@ -162,7 +162,8 @@ export default {
       this.$refs["newItemModal"].toggle("#toggle-btn");
     },
     forwardItem(i) {
-      this.postData("inProgress.json", this.tasks[i]);
+      this.saveTask("inProgress", this.tasks[i]);
+      this.deleteData("tasks", this.tasks[i].title);
     },
     deleteItem(i) {
       if (confirm(`Delete ${i} ?`)) {
