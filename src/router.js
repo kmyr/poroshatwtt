@@ -2,9 +2,8 @@ import Vue from "vue";
 import Router from "vue-router";
 import home from "./view/home"
 import editTask from "@/components/editTask"
-// import Dashboard from "@/components/Dashboard"
 import newTask from "@/components/newTask"
-import viewTask from "@/components/viewTask"
+
 
 
 Vue.use(Router);
@@ -15,8 +14,9 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'dashboard',
+            name: 'home',
             component: home
+
         },
         {
             path: '/edit/:taskTitle',
@@ -29,11 +29,7 @@ export default new Router({
             component: newTask
         },
 
-        {
-            path: '/:taskTitle',
-            name: 'view_task',
-            component: viewTask
-        }
+
     ],
     scrollBehavior: (to) => {
         if (to.hash) {

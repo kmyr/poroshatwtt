@@ -3,7 +3,7 @@ import db from "../components/firebaseInit";
 
 export default {
   methods: {
-    saveTask(document, obj) {
+    saveData(document, obj) {
       db.collection(document)
         .add(obj)
         .catch(error => console.log(err))
