@@ -240,7 +240,6 @@ export default {
       this.deleteData("tasks", this.tasks[i].title);
     },
     deleteItem(i) {
-      alert(i);
       this.saveData("refersh", {});
       this.deleteData(this.data, i.title);
       this.$refs["deleteItemModal"].toggle("#toggle-btn");
