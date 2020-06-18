@@ -234,7 +234,7 @@ export default {
       this.$refs["viewItemModal"].toggle("#toggle-btn");
     },
     forwardItem(i) {
-      this.saveTask("inProgress", this.tasks[i]);
+      this.saveData("inProgress", this.tasks[i]);
       this.deleteData("tasks", this.tasks[i].title);
     },
     deleteItem(i) {
