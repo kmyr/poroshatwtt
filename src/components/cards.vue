@@ -116,8 +116,8 @@
     <!-- delete modal -->
     <div class="modal fade" id="addTaskForm" tabindex="-1" role="dialog" aria-hidden="true">
       <div>
-        <b-modal ref="deleteItemModal" hide-footer :title="'Delete '+currentTask">
-          <div class="d-block text-center">Delete {{currentTask}} ?</div>
+        <b-modal ref="deleteItemModal" hide-footer :title="'Delete '+currentTask.title">
+          <div class="d-block text-center">Delete {{currentTask.title}} ?</div>
           <div class="row" id="popupForm">
             <div class="col-md-6">
               <b-button
