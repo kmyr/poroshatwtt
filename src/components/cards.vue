@@ -224,8 +224,10 @@ export default {
   },
   methods: {
     deleteItemModal(i) {
+      if (i !== undefined) {
+        this.currentTask = i;
+      }
       this.$refs["deleteItemModal"].toggle("#toggle-btn");
-      this.currentTask = i;
     },
     viewItemModal(i) {
       if (i !== undefined) {
